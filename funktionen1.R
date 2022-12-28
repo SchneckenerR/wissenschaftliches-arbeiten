@@ -1,5 +1,10 @@
 # Funktionen Skript 1
 # Pakete:
+##install.packages("moments")
+##install.packages("DescTools")
+
+## L: falls man die Pakete noch runterladen muss, ist hier Befehl auskommentiert
+
 library("moments") # fuer Woelbungs- und Schiefemasse
 library("DescTools") # fuer Zusammenhangskoeff.
 
@@ -40,7 +45,8 @@ summary_kategorisch <- function(x){
   relHF <- absHF/length(x)
   
   # Fasse alles in einer Matrix zusammen und bennene ihre Zeilen und Spalten
-  summary_kat <- matrix(c(absHF, relHF), ncol=4, nrow=2, byrow=TRUE)
+  ## L: Spaltenanzahl entspricht individueller Tabellenlaenge
+  summary_kat <- matrix(c(absHF, relHF), ncol=length(absHF), nrow=2, byrow=TRUE)
   colnames(summary_kat) <- dimnames(absHF)[[1]]
   rownames(summary_kat) <- c("abs. HF", "rel. HK")
   # Gebe diese Matrix aus
@@ -67,7 +73,8 @@ zsh_zwei_kateg <- function(x,y) {
   
   summary <- matrix(c(pcont,pcont_kor,cram), nrow=3, ncol=1)
   colnames(summary) <- ""
-  rownames(summary) <- c("Phi", "Pears. Kontingenzkoeff.", "korrigierter Pears. Kontkoeff.",
+  ## L: "phi" rausgenommen, da Formel dazu fehlt
+  rownames(summary) <- c("Pears. Kontingenzkoeff.", "korrigierter Pears. Kontkoeff.",
                          "Cramers V")
   return(summary)
 }
@@ -85,11 +92,12 @@ zsh_metr_dich <- function(x,y) {
   
   # Korrelationskoeff nach Bravais Pearson (passe an hoeheres Skalenniveau an, also dichotome Var. als metrisch ansehen)
   bpcor <- cor(x,y)
-  
-  cat("Cramers V Koeffizient:",cram)
+  ## L: Absatz durch "\n" , damit Angaben getrennt sind
+  cat("Cramers V Koeffizient:",cram,"\n")
   cat("Bravais-Pearson Korrelationskoeff:",bpcor)
   
   # Eventuell noch andere Koeffizienten?
+  ## L: siehe Issue :)
 }
 
 

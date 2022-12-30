@@ -92,12 +92,17 @@ zsh_metr_dich <- function(x,y) {
   
   # Korrelationskoeff nach Bravais Pearson (passe an hoeheres Skalenniveau an, also dichotome Var. als metrisch ansehen)
   bpcor <- cor(x,y)
+  
+  # Mittelwerte fuer jeweils beide Auspraegungen der dichotomen Variable ausgeben:
+  mean0 <- mean(x[which(y == 0)])
+  mean1 <- mean(x[which(y == 1)])
+  
   ## L: Absatz durch "\n" , damit Angaben getrennt sind
   cat("Cramers V Koeffizient:",cram,"\n")
-  cat("Bravais-Pearson Korrelationskoeff:",bpcor)
+  cat("Bravais-Pearson Korrelationskoeff:",bpcor,"\n")
+  cat("Mittelwert mit 0 Auspraegung:",mean0,"\n")
+  cat("Mittelwert mit 1 Auspraegung:",mean1,"\n")
   
-  # Eventuell noch andere Koeffizienten?
-  ## L: siehe Issue :)
 }
 
 

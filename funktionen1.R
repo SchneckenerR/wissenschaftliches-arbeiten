@@ -1,11 +1,9 @@
 # Funktionen Skript 1
 # Pakete:
-##install.packages("moments")
 ##install.packages("DescTools")
 
 ## L: falls man die Pakete noch runterladen muss, ist hier Befehl auskommentiert
 
-library("moments") # fuer Woelbungs- und Schiefemasse
 library("DescTools") # fuer Zusammenhangskoeff.
 
 # a) Funktion berechnet verschiedene geeignete deskriptive Statistiken fuer metrische Variablen
@@ -23,8 +21,8 @@ summary_metrisch <- function(x){
   iqr <- quart3-quart1
   sd <- sd(x)
   # Schiefe- und Woelbungsmasse
-  schiefe <- skewness(x)
-  woelbung <- kurtosis(x) - 3
+  schiefe <- schiefe(x) #Hilfsfunktion
+  woelbung <- woelbung(x) #Hilfsfunktion
   
   # Fasse alles in einer Matrix zusammen und bennene ihre Zeilen und Spalten
   summary_metr <- matrix(round(c(min,quart1,median,mean,quart3,max,span,iqr,sd,schiefe,woelbung),digits=2),
@@ -86,6 +84,8 @@ zsh_zwei_kateg <- function(x,y) {
 # Eingabe: die beiden Vektoren, wobei x metrisch und y dichotom ist
 zsh_metr_dich <- function(x,y) {
   tab <- table(x,y)
+  if(y!=is.numeric(y)){y <- as.numeric(y)}
+  y <- y-1
   
   # Cramers V Koeff (passe Skalenniveau der metrischen Variable an die niedrigere dichotome an)
   cram <- CramerV(tab)
@@ -105,8 +105,16 @@ zsh_metr_dich <- function(x,y) {
   
 }
 
+# f)
 
-
+VisKat <- function(x,y,z){
+  #Mosaikplot aufgeteilt nach variable x (im besten Fall dichotrome Variable),
+  #in Abhängigkeit von y und z
+  op <- par(oma = c(1,5,1,1))
+  mosaicplot(data = data, ~x+y+z)
+  mtext(side =3, text = "z",line =1)
+  par(op) 
+}
 
 
 

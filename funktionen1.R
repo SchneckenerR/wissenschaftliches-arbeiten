@@ -115,6 +115,6 @@ VisKat <- function(x,y,z){
   mtext(side =3, text = "z",line =1)
   par(op) 
 }
-
+test
 
 

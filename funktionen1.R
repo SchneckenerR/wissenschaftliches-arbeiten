@@ -24,6 +24,9 @@ summary_metrisch <- function(x){
   schiefe <- schiefe(x) #Hilfsfunktion
   woelbung <- woelbung(x) #Hilfsfunktion
   
+  # Visualisiere die Daten in einem Histogramm:
+  hist(x, freq=FALSE, ylab="HÃ¤ufigkeitsdichte", main="Histogramm")
+  
   # Fasse alles in einer Matrix zusammen und bennene ihre Zeilen und Spalten
   summary_metr <- matrix(round(c(min,quart1,median,mean,quart3,max,span,iqr,sd,schiefe,woelbung),digits=2),
                         nrow=11,byrow = TRUE)
@@ -41,6 +44,9 @@ summary_kategorisch <- function(x){
   # absolute und relative Haufigkeiten:
   absHF <- table(x)
   relHF <- absHF/length(x)
+  
+  # Visualisierung in einem Balkendiagramm:
+  barplot(absHF, main="Balkendiagramm", ylab="Anzahl")
   
   # Fasse alles in einer Matrix zusammen und bennene ihre Zeilen und Spalten
   ## L: Spaltenanzahl entspricht individueller Tabellenlaenge
@@ -108,8 +114,8 @@ zsh_metr_dich <- function(x,y) {
 # f)
 
 VisKat <- function(x,y,z){
-  #Mosaikplot aufgeteilt nach variable x (im besten Fall dichotrome Variable),
-  #in Abhängigkeit von y und z
+  #Mosaikplot aufgeteilt nach variable x (im besten Fall dichotome Variable),
+  #in Abh?ngigkeit von y und z
   op <- par(oma = c(1,5,1,1))
   mosaicplot(data = data, ~x+y+z)
   mtext(side =3, text = "z",line =1)

@@ -1,4 +1,4 @@
-# Analyse des Datensatzes mittels der Funktionen auf Aufgabe 3
+# Analyse des Datensatzes mittels der Funktionen aus Aufgabe 3
 
 # Pakete:
 library(readxl)

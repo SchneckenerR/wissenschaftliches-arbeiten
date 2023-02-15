@@ -1,7 +1,6 @@
 # Funktionen Skript 1
 # Pakete:
 ##install.packages("DescTools")
-##install.packages("tidyverse")
 
 ## L: falls man die Pakete noch runterladen muss, ist hier Befehl auskommentiert
 

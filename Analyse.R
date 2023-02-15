@@ -112,9 +112,16 @@ zsh_zwei_kateg(Studenten$MatheInteresse, Studenten$MatheLK)
 
 
 
-# Analyse des Zusammenhangs zwischen Mathe LK und Interesse an Programmieren: (Lennart)
-# hier Funktion c) verwenden
+# Analyse des Zusammenhangs zwischen Mathe LK und Interesse an Programmieren: 
 
+zsh_zwei_kateg(x = Studenten$MatheLK, y = Studenten$PrograInteresse)
+# Pears. Kontingenzkoeff.        0.6366149
+# korrigierter Pears. Kontkoeff. 0.9003094
+# Cramers V                      0.8255056
+
+# Der Pearson Koeffizient und Cramers V liegen nahe bei 1. 
+# Die Ergebnisse zeigen eine starke Korrelation zwischen MatheLK und den 
+# Programmierkenntnissen. 
 
 # Analyse des Zusammenhangs zwischen Interesse an Mathe und Intreresse am Programmieren: (Lennart)
 # hier Funktion c) verwenden

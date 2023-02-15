@@ -123,12 +123,18 @@ zsh_zwei_kateg(Studenten$MatheInteresse, Studenten$MatheLK)
 
 # Analyse des Zusammenhangs zwischen Alter und Mathe LK:
 zsh_metr_dich(Studenten$Alter, Studenten$MatheLK, y_n = TRUE)
-# Cramers V Koeffizient: 1 
-# Bravais-Pearson Korrelationskoeff: -0.1363912 
-# Mittelwert mit 0 Auspraegung: 25.11461 
-# Mittelwert mit 1 Auspraegung: 24.58155 
+# Cramers V Koeffizient: 0.3289019 
+# Bravais-Pearson Korrelationskoeff: -0.145961 
+# Mittelwert mit 0 Auspraegung: 25.14 
+# Mittelwert mit 1 Auspraegung: 24.56 
 
-##################### Interpretaion fehlt noch ##############################
+# Sowohl der Cramer V Koeffizient als auch der Bravis-Pearson Koeffizienzt liegen 
+# in der Nähe von 0.
+# Somit deuten beide Koeffizienten auf keinen Zusammenhang zwischen dem Alter
+# dem Vorhandensein eines Mathe-LK Kurses hin. 
+# Zusaetzlich ist das Durchschnittsalter bei den Personen die einen Mathe-LK Kurs
+# kaum unterschiedlich zu dem Durchschnittsalter von Personen ohne Mathe-Lk Kurs. 
+# -> Es besteht sehr wahrscheinlich kein Zusammenhang zwischen dem Alter und MatheLK.
 
 
 # Analyse des Zusammenhangs zwischen Mathe LK, MatheInteresse und PrograInteresse (Lennart)

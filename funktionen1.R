@@ -1,6 +1,7 @@
 # Funktionen Skript 1
 # Pakete:
 ##install.packages("DescTools")
+##install.packages("tidyverse")
 
 ## L: falls man die Pakete noch runterladen muss, ist hier Befehl auskommentiert
 
@@ -87,12 +88,24 @@ zsh_zwei_kateg <- function(x,y) {
 
 # d) Funktion berechnet versch. geeign. desk. bivariate Statistiken fuer den Zusammenhang
 # zwischen einer dichotomen und einer metrischen Variable und gibt diese aus
-# Eingabe: die beiden Vektoren, wobei x metrisch und y dichotom ist
-zsh_metr_dich <- function(x,y) {
-  tab <- table(x,y)
-  if(y!=is.numeric(y)){y <- as.numeric(y)}
-  y <- y-1
+# Eingabe: Die beiden Vektoren, wobei x metrisch und y dichotom ist. Zusaetzlich kann
+# angegeben werden, ob y in der Form ("ja", "nein") ist. Dann sollte der Paramter 
+# y_n gleich TRUE gesetzt werden. 
+zsh_metr_dich <- function(x, y, y_n = FALSE) {
   
+  # Das  Alter muss gerundet werden fuer Cramers V
+  x = round(x)  
+  
+  # Abfrage zur Umwandlung von "ja"-"nein" zu 1-0 in y 
+  if(y_n == TRUE){
+       y[y == "ja"] = 1
+       y[y == "nein"] = 0
+       y = as.numeric(y)
+  }
+  
+  tab <- table(x,y)
+
+  print(tab)
   # Cramers V Koeff (passe Skalenniveau der metrischen Variable an die niedrigere dichotome an)
   cram <- CramerV(tab)
   

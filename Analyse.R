@@ -122,12 +122,13 @@ zsh_zwei_kateg(Studenten$MatheInteresse, Studenten$MatheLK)
 
 
 # Analyse des Zusammenhangs zwischen Alter und Mathe LK:
-zsh_metr_dich(Studenten$Alter, Studenten$MatheLK)
-# die Funktion hat ein Error, weil im Datensatz Mathe LK als "ja", "nein"
-# kodiert ist, wahrend man fuer die Funktion zsh_metr_dich braucht, dass die dichotome V.
-# als 0-1 Variable kodiert ist.
-# TO DO: da muesste man in Zeile 93 "if(y!=is.numeric(y)){y <- as.numeric(y)}" abaendern
+zsh_metr_dich(Studenten$Alter, Studenten$MatheLK, y_n = TRUE)
+# Cramers V Koeffizient: 1 
+# Bravais-Pearson Korrelationskoeff: -0.1363912 
+# Mittelwert mit 0 Auspraegung: 25.11461 
+# Mittelwert mit 1 Auspraegung: 24.58155 
 
+##################### Interpretaion fehlt noch ##############################
 
 
 # Analyse des Zusammenhangs zwischen Mathe LK, MatheInteresse und PrograInteresse (Lennart)

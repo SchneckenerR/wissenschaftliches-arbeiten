@@ -123,10 +123,17 @@ zsh_zwei_kateg(x = Studenten$MatheLK, y = Studenten$PrograInteresse)
 # Die Ergebnisse zeigen eine starke Korrelation zwischen MatheLK und den 
 # Programmierkenntnissen. 
 
-# Analyse des Zusammenhangs zwischen Interesse an Mathe und Intreresse am Programmieren: (Lennart)
-# hier Funktion c) verwenden
+# Analyse des Zusammenhangs zwischen Interesse an Mathe und Intreresse am Programmieren: 
 
+zsh_zwei_kateg(x = Studenten$MatheInteresse, y = Studenten$PrograInteresse)
+# Pears. Kontingenzkoeff.        0.7851641
+# korrigierter Pears. Kontkoeff. 0.8480742
+# Cramers V                      0.5175977
 
+# Auch das Interesse an Mathe und das Interesse am Programmieren 
+# korrelieren ziemlich stark miteinander. 
+# Jedoch ist die Korrelation hier nicht so stark wie bei dem
+# Zusammenhang zwischen Mathe LK und Interesse an Programmieren
 
 # Analyse des Zusammenhangs zwischen Alter und Mathe LK:
 zsh_metr_dich(Studenten$Alter, Studenten$MatheLK, y_n = TRUE)

@@ -7,6 +7,9 @@ library(readxl)
 #setwd("C:/Users/Admin/Documents/GitHub/wissenschaftliches-arbeiten")
 Studenten = read.csv("DatensatzGitHub.csv", sep=";", dec=",", header=TRUE)[,2:6]
 
+#Einbetten der Funktionen aus 'funktionen1.R'
+source("funktionen1.R")
+
 str(Studenten)
 #'data.frame':	100 obs. of  5 variables:
 #  $ Alter          : num  23.4 24.4 24.7 24.4 24.9 ...

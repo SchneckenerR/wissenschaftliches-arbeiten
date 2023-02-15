@@ -105,7 +105,6 @@ zsh_metr_dich <- function(x, y, y_n = FALSE) {
   
   tab <- table(x,y)
 
-  print(tab)
   # Cramers V Koeff (passe Skalenniveau der metrischen Variable an die niedrigere dichotome an)
   cram <- CramerV(tab)
   

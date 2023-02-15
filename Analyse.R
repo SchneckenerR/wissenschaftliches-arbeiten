@@ -91,9 +91,16 @@ summary_kategorisch(Studenten$MatheLK)
 
 ### bivariate Analyse
 
-# Analyse des Zusammenhangs zwischen Mathe LK und Studienfach: (Lennart)
-# hier Funktion c) verwenden
+# Analyse des Zusammenhangs zwischen Mathe LK und Studienfach: 
 
+zsh_zwei_kateg(Studenten$MatheLK, Studenten$Studienfach)
+# Pears. Kontingenzkoeff.        0.3220837
+# korrigierter Pears. Kontkoeff. 0.4554952
+# Cramers V                      0.3402133
+
+# Es scheint als gäbe es keinen (starken) Zusammenhang zwischen
+# Mathe LK und dem Studienfach. Die Korr.Koeffizienten sind nämlich alle 
+# relativ gering. 
 
 # Analyse des Zusammenhangs zwischen Mathe LK und Interesse an Mathe:
 zsh_zwei_kateg(Studenten$MatheInteresse, Studenten$MatheLK)

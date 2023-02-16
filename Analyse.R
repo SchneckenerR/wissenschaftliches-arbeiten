@@ -71,7 +71,6 @@ summary_kategorisch(Studenten$Studienfach)
 # Analyse des Interesses an Mathe: (Lennart)
 # hier die Funktion d) fuer ordinale Daten verwenden
 
-
 # Analyse des Interesses am Programmieren: (Lennart)
 # hier die Funktion d) fuer ordinale Daten verwenden
 
@@ -91,9 +90,16 @@ summary_kategorisch(Studenten$MatheLK)
 
 ### bivariate Analyse
 
-# Analyse des Zusammenhangs zwischen Mathe LK und Studienfach: (Lennart)
-# hier Funktion c) verwenden
+# Analyse des Zusammenhangs zwischen Mathe LK und Studienfach: 
 
+zsh_zwei_kateg(Studenten$MatheLK, Studenten$Studienfach)
+# Pears. Kontingenzkoeff.        0.3220837
+# korrigierter Pears. Kontkoeff. 0.4554952
+# Cramers V                      0.3402133
+
+# Es scheint als gäbe es keinen (starken) Zusammenhang zwischen
+# Mathe LK und dem Studienfach. Die Korr.Koeffizienten sind nämlich alle 
+# relativ gering. 
 
 # Analyse des Zusammenhangs zwischen Mathe LK und Interesse an Mathe:
 zsh_zwei_kateg(Studenten$MatheInteresse, Studenten$MatheLK)
@@ -112,25 +118,55 @@ zsh_zwei_kateg(Studenten$MatheInteresse, Studenten$MatheLK)
 
 
 
-# Analyse des Zusammenhangs zwischen Mathe LK und Interesse an Programmieren: (Lennart)
-# hier Funktion c) verwenden
+# Analyse des Zusammenhangs zwischen Mathe LK und Interesse an Programmieren: 
 
+zsh_zwei_kateg(x = Studenten$MatheLK, y = Studenten$PrograInteresse)
+# Pears. Kontingenzkoeff.        0.6366149
+# korrigierter Pears. Kontkoeff. 0.9003094
+# Cramers V                      0.8255056
 
-# Analyse des Zusammenhangs zwischen Interesse an Mathe und Intreresse am Programmieren: (Lennart)
-# hier Funktion c) verwenden
+# Der Pearson Koeffizient und Cramers V liegen nahe bei 1. 
+# Die Ergebnisse zeigen eine starke Korrelation zwischen MatheLK und den 
+# Programmierkenntnissen. 
 
+# Analyse des Zusammenhangs zwischen Interesse an Mathe und Intreresse am Programmieren: 
 
+zsh_zwei_kateg(x = Studenten$MatheInteresse, y = Studenten$PrograInteresse)
+# Pears. Kontingenzkoeff.        0.7851641
+# korrigierter Pears. Kontkoeff. 0.8480742
+# Cramers V                      0.5175977
+
+# Auch das Interesse an Mathe und das Interesse am Programmieren 
+# korrelieren ziemlich stark miteinander. 
+# Jedoch ist die Korrelation hier nicht so stark wie bei dem
+# Zusammenhang zwischen Mathe LK und Interesse an Programmieren
 
 # Analyse des Zusammenhangs zwischen Alter und Mathe LK:
 zsh_metr_dich(Studenten$Alter, Studenten$MatheLK, y_n = TRUE)
-# Cramers V Koeffizient: 1 
-# Bravais-Pearson Korrelationskoeff: -0.1363912 
-# Mittelwert mit 0 Auspraegung: 25.11461 
-# Mittelwert mit 1 Auspraegung: 24.58155 
+# Cramers V Koeffizient: 0.3289019 
+# Bravais-Pearson Korrelationskoeff: -0.145961 
+# Mittelwert mit 0 Auspraegung: 25.14 
+# Mittelwert mit 1 Auspraegung: 24.56 
 
-##################### Interpretaion fehlt noch ##############################
+# Sowohl der Cramer V Koeffizient als auch der Bravis-Pearson Koeffizienzt liegen 
+# in der Nähe von 0.
+# Somit deuten beide Koeffizienten auf keinen Zusammenhang zwischen dem Alter
+# dem Vorhandensein eines Mathe-LK Kurses hin. 
+# Zusaetzlich ist das Durchschnittsalter bei den Personen die einen Mathe-LK Kurs
+# kaum unterschiedlich zu dem Durchschnittsalter von Personen ohne Mathe-Lk Kurs. 
+# -> Es besteht sehr wahrscheinlich kein Zusammenhang zwischen dem Alter und MatheLK.
 
 
-# Analyse des Zusammenhangs zwischen Mathe LK, MatheInteresse und PrograInteresse (Lennart)
-# Funktion f) hier verwenden
+# Analyse des Zusammenhangs zwischen Mathe LK, MatheInteresse und PrograInteresse 
 
+Studenten1 = Studenten %>%
+  mutate(MatheLK = if_else(MatheLK == "ja", 1, 0))
+
+visKat(x = Studenten1$PrograInteresse, y = Studenten1$MatheInteresse, 
+       z = Studenten1$MatheLK, x_axis_Name = "Programmierkenntnisse",
+       y_axis_Name = "Mathe Interesse", filling_Name = "MatheLK - ja")
+
+# Es ist klar die negative Korrelation zwischen Programmierkenntnisse
+# und dem Mathe Interesse zu sehen. Ausserdem verrgingert sich die Anzahl an Leuten
+# im Mathe LK wenn die Programmierkenntnisse steigen und das Interesse in
+# Mathe sinkt.

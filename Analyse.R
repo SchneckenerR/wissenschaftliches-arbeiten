@@ -71,7 +71,6 @@ summary_kategorisch(Studenten$Studienfach)
 # Analyse des Interesses an Mathe: (Lennart)
 # hier die Funktion d) fuer ordinale Daten verwenden
 
-
 # Analyse des Interesses am Programmieren: (Lennart)
 # hier die Funktion d) fuer ordinale Daten verwenden
 
@@ -158,6 +157,16 @@ zsh_metr_dich(Studenten$Alter, Studenten$MatheLK, y_n = TRUE)
 # -> Es besteht sehr wahrscheinlich kein Zusammenhang zwischen dem Alter und MatheLK.
 
 
-# Analyse des Zusammenhangs zwischen Mathe LK, MatheInteresse und PrograInteresse (Lennart)
-# Funktion f) hier verwenden
+# Analyse des Zusammenhangs zwischen Mathe LK, MatheInteresse und PrograInteresse 
 
+Studenten1 = Studenten %>%
+  mutate(MatheLK = if_else(MatheLK == "ja", 1, 0))
+
+visKat(x = Studenten1$PrograInteresse, y = Studenten1$MatheInteresse, 
+       z = Studenten1$MatheLK, x_axis_Name = "Programmierkenntnisse",
+       y_axis_Name = "Mathe Interesse", filling_Name = "MatheLK - ja")
+
+# Es ist klar die negative Korrelation zwischen Programmierkenntnisse
+# und dem Mathe Interesse zu sehen. Ausserdem verrgingert sich die Anzahl an Leuten
+# im Mathe LK wenn die Programmierkenntnisse steigen und das Interesse in
+# Mathe sinkt.

@@ -1,10 +1,12 @@
 # Funktionen Skript 1
 # Pakete:
 ##install.packages("DescTools")
+##install.packages("tidyverse")
 
 ## L: falls man die Pakete noch runterladen muss, ist hier Befehl auskommentiert
 
 library("DescTools") # fuer Zusammenhangskoeff.
+library("tidyverse")
 
 # a) Funktion berechnet verschiedene geeignete deskriptive Statistiken fuer metrische Variablen
 # und gibt diese aus
@@ -124,14 +126,33 @@ zsh_metr_dich <- function(x, y, y_n = FALSE) {
 
 # f)
 
-VisKat <- function(x,y,z){
-  #Mosaikplot aufgeteilt nach variable x (im besten Fall dichotome Variable),
-  #in Abh?ngigkeit von y und z
-  op <- par(oma = c(1,5,1,1))
-  mosaicplot(data = data, ~x+y+z)
-  mtext(side =3, text = "z",line =1)
-  par(op) 
+# visKat erstellt einen Heatplot. Damit koennen 3 Variablen dargestellt 
+# werden (x, y und z). Fuer z wird der durchschnittliche Wert berchnet und als 
+# Farbe dargestellt. 
+# Die Achsenbeschriftung muss mit angegeben werden.  
+
+visKat <- function(x, y, z, x_axis_Name, y_axis_Name, filling_Name){
+  df = data.frame(x,y,z)
+  
+  df %>%
+    group_by(x, y) %>%
+    summarise(Mean = mean(z, na.rm=TRUE)) %>%
+    ggplot() +
+    geom_tile(aes(x = x, y = y, fill = Mean)) +
+    xlab(x_axis_Name) +
+    ylab(y_axis_Name) +
+    guides(fill=guide_legend(title= paste("Mittelwert von", filling_Name)))
 }
 
 
+#Alte Funktion: 
 
+# VisKat <- function(x,y,z){
+#   #Mosaikplot aufgeteilt nach variable x (im besten Fall dichotome Variable),
+#   #in Abh?ngigkeit von y und z
+#   op <- par(oma = c(1,5,1,1))
+#   mosaicplot(data = data, ~x+y+z)
+#   mtext(side =3, text = "z",line =1)
+#   par(op) 
+# }
+ 

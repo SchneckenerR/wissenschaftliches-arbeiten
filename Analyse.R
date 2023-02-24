@@ -68,12 +68,31 @@ summary_kategorisch(Studenten$Studienfach)
 # Informatiker gibt und 1/10 Mathematiker.
 
 
-# Analyse des Interesses an Mathe: (Lennart)
-# hier die Funktion d) fuer ordinale Daten verwenden
+# Analyse des Interesses an Mathe: 
 
-# Analyse des Interesses am Programmieren: (Lennart)
-# hier die Funktion d) fuer ordinale Daten verwenden
+zsh_metr_dich(Studenten$MatheInteresse, Studenten$MatheLK, y_n = T)
 
+# Cramers V Koeffizient: 0.8461678 
+# Bravais-Pearson Korrelationskoeff: 0.8081648 
+# Mittelwert mit 0 Auspraegung: 2.54 
+# Mittelwert mit 1 Auspraegung: 5.16 
+
+# Es ist ein starker positivier Zusammenhang zwischen Matheinteresse und dem
+# MatheLK vorhanden. Im Mittel haben Schueler ohne MatheLK weniger
+# Matheinteresse.
+
+# Analyse des Interesses am Programmieren: 
+
+zsh_metr_dich(Studenten$PrograInteresse, Studenten$MatheLK, y_n = T)
+
+# Cramers V Koeffizient: 0.8255056 
+# Bravais-Pearson Korrelationskoeff: -0.7835337 
+# Mittelwert mit 0 Auspraegung: 5.88 
+# Mittelwert mit 1 Auspraegung: 3.44
+
+# Es ist ein starker negativer Zusammenhang zwischen den Porgrammierkenntnissen und dem
+# MatheLK vorhanden. Im Mittel haben Schueler ohne MatheLK bessere 
+# Programmierkenntnisse.
 
 # Analyse von MatheLK
 summary_kategorisch(Studenten$MatheLK)

@@ -68,31 +68,50 @@ summary_kategorisch(Studenten$Studienfach)
 # Informatiker gibt und 1/10 Mathematiker.
 
 
-# Analyse des Interesses an Mathe: 
+# Interesse an Mathe: 
 
-zsh_metr_dich(Studenten$MatheInteresse, Studenten$MatheLK, y_n = T)
+cat_ord(Studenten$MatheInteresse)
 
-# Cramers V Koeffizient: 0.8461678 
-# Bravais-Pearson Korrelationskoeff: 0.8081648 
-# Mittelwert mit 0 Auspraegung: 2.54 
-# Mittelwert mit 1 Auspraegung: 5.16 
+# Quantile: 
+#
+# 0%  25%  50%  75% 100% 
+# 1    2    4    5    7 
+#
+#     x    category
+# 1   6    sehr hoch
+# 2   7    sehr hoch
+# 3   2      niedrig
+# 4   3      niedrig
+# 5   3      niedrig
+# 6   5    sehr hoch
+# 7   2      niedrig
+# 8   4         hoch
+# (...)
 
-# Es ist ein starker positivier Zusammenhang zwischen Matheinteresse und dem
-# MatheLK vorhanden. Im Mittel haben Schueler ohne MatheLK weniger
-# Matheinteresse.
 
-# Analyse des Interesses am Programmieren: 
+# nteresse am Programmieren: 
 
-zsh_metr_dich(Studenten$PrograInteresse, Studenten$MatheLK, y_n = T)
+cat_ord(Studenten$PrograInteresse)
 
-# Cramers V Koeffizient: 0.8255056 
-# Bravais-Pearson Korrelationskoeff: -0.7835337 
-# Mittelwert mit 0 Auspraegung: 5.88 
-# Mittelwert mit 1 Auspraegung: 3.44
+# Quantile:
+#
+# 0%  25%  50%  75% 100% 
+# 1    3    5    6    7 
+#
+#     x    category
+# 1   3      niedrig
+# 2   2 sehr niedrig
+# 3   7    sehr hoch
+# 4   7    sehr hoch
+# 5   6    sehr hoch
+# 6   3      niedrig
+# 7   6    sehr hoch
+# 8   6    sehr hoch
+# (...)
 
-# Es ist ein starker negativer Zusammenhang zwischen den Porgrammierkenntnissen und dem
-# MatheLK vorhanden. Im Mittel haben Schueler ohne MatheLK bessere 
-# Programmierkenntnisse.
+
+# Matheinteresse und Programmierinteresse liegen beide im Bereich von 1 - 7.
+
 
 # Analyse von MatheLK
 summary_kategorisch(Studenten$MatheLK)
@@ -107,7 +126,7 @@ summary_kategorisch(Studenten$MatheLK)
 
 
 
-### bivariate Analyse
+### multivariate Analyse
 
 # Analyse des Zusammenhangs zwischen Mathe LK und Studienfach: 
 
@@ -189,3 +208,30 @@ visKat(x = Studenten1$PrograInteresse, y = Studenten1$MatheInteresse,
 # und dem Mathe Interesse zu sehen. Ausserdem verrgingert sich die Anzahl an Leuten
 # im Mathe LK wenn die Programmierkenntnisse steigen und das Interesse in
 # Mathe sinkt.
+
+
+# Analyse des Zusammenhangs zwischen Matheinteresse und MatheLK: 
+
+zsh_metr_dich(Studenten$MatheInteresse, Studenten$MatheLK, y_n = T)
+
+# Cramers V Koeffizient: 0.8461678 
+# Bravais-Pearson Korrelationskoeff: 0.8081648 
+# Mittelwert mit 0 Auspraegung: 2.54 
+# Mittelwert mit 1 Auspraegung: 5.16 
+
+# Es ist ein starker positivier Zusammenhang zwischen Matheinteresse und dem
+# MatheLK vorhanden. Im Mittel haben Schueler ohne MatheLK weniger
+# Matheinteresse.
+
+# Analyse des Zusammenhangs zwischen Programmierinteresse und MatheLK
+
+zsh_metr_dich(Studenten$PrograInteresse, Studenten$MatheLK, y_n = T)
+
+# Cramers V Koeffizient: 0.8255056 
+# Bravais-Pearson Korrelationskoeff: -0.7835337 
+# Mittelwert mit 0 Auspraegung: 5.88 
+# Mittelwert mit 1 Auspraegung: 3.44
+
+# Es ist ein starker negativer Zusammenhang zwischen den Porgrammierkenntnissen und dem
+# MatheLK vorhanden. Im Mittel haben Schueler ohne MatheLK bessere 
+# Programmierkenntnisse.

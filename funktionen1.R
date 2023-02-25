@@ -124,6 +124,35 @@ zsh_metr_dich <- function(x, y, y_n = FALSE) {
   
 }
 
+#e)
+
+# Funktion cat_ord gruppiert ordinale Daten nach den 4 Quartilen in die Gruppen
+# "sehr niedrig", "niedrig", "hoch" und "sehr hoch". 
+
+cat_ord <- function(x){
+  # Berechne Quartile
+  quantiles = quantile(x)
+  
+  # Initialisiere Variable fuer Output 
+  category = 0
+  
+  # Logische Abfrage in welche Grupper der Wert eingeordnet wird
+  for(i in 1:length(x)){
+    if(x[i] < quantiles[2]){
+      res = "sehr niedrig"
+    }else if(x[i] >= quantiles[2] & x[i] < quantiles[3]){
+      res = "niedrig"
+    }else if(x[i] >= quantiles[3] & x[i] < quantiles[4]){
+      res = "hoch"
+    }else{
+      res = "sehr hoch"
+    }
+    category[i] = res
+  }
+  print(quantiles)
+  return(data.frame(x, category))
+}
+
 # f)
 
 # visKat erstellt einen Heatplot. Damit koennen 3 Variablen dargestellt 
